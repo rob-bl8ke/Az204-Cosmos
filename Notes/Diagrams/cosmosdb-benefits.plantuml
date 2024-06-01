@@ -1,0 +1,25 @@
+@startmindmap "Benefits of Cosmos DB"
+skinparam nodeBorderThickness 1
+skinparam nodeBorderColor #000000
+skinparam ArrowColor #000000
+skinparam ArrowThickness 1
+skinparam nodeFontSize 12
+skinparam nodeFontStyle bold
+
+* Azure Cosmos DB
+** Fully managed NoSQL database
+*** Low latency
+*** Elastic scalability of throughput
+*** Well-defined semantics for data consistency
+** Global Distribution
+*** Configurable databases across Azure regions
+*** Reduced latency for users
+*** High availability
+** Benefits of Global Distribution
+*** Unlimited elastic write and read scalability
+*** 99.999% read and write availability worldwide
+*** Guaranteed reads and writes in <10ms
+** Data Replication
+*** Internal handling by Azure Cosmos DB
+*** Consistency level guarantees
+@endmindmap

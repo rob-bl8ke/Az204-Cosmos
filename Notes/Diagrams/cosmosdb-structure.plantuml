@@ -1,0 +1,38 @@
+@startmindmap "Cosmos DB Structure"
+
++ Cosmos DB\nStructure
+++ Account
++++_ Fundamental unit of scalablity (throughput and availability).
++++_ Partitions containers using a partition key
++++_ Regions can be added and removed any time
++++_ Unique DNS name
++++_ Soft max. of 50 accounts per subscription
++++ Database
+++++_ Namespace / logical management of containers
+++++ Container
++++++_ Unit of scalability for provisioned throughput and storage
++++++_ Items grouped into logical partitioned\n  distributed across physical partitions\n  based on partition key
++++++_ **Modes**
+++++++_ Dedicated provisioned throughput mode
+++++++_ Shared provisioned throughput mode\n Shared with other database containers
++++++ Items
+++++++_ documents, rows, or graph node or edge
+
+* Azure Cosmos DB
+** Azure Cosmos DB account
+***_ Global distribution
+***_ High availability
+***_ Managed via Azure portal, Azure CLI, or SDKs
+***_ Add/remove Azure regions
+** Azure Cosmos DB container
+***_ Unlimited provisioned throughput and storage
+***_ Transparent partitioning with logical partition key
+***_ Horizontal partitioning and replication across regions
+***_ Dedicated and shared provisioned throughput modes
+** Azure Cosmos DB database
+***_ Namespace for managing containers
+***_ Unit of management for containers
+** Azure Cosmos DB items
+***_ Represent documents, rows, or nodes/edges
+
+@endmindmap

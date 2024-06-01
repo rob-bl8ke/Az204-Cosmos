@@ -1,0 +1,24 @@
+@startmindmap "Cosmos DB Landscape"
+
++ Cosmos DB Landscape
+++ NoSQL
++++_ Document format
++++_ Recommended non-relational option
++++_ Query items using SQL syntax
+++ MongoDB
++++_ Compatible with MongoDB wire protocol
++++_ Data stored in BSON
+++ PostgreSQL
++++_ Managed service
++++_ Distributed database with distributed tables\n   (Citus open source)
+++ Apache Cassandra
++++_ Stores data in column-oriented schema
++++_ Highly distributed, horizontally scaling approach\n  to storing large volumes of data
+++ Apache Gremlin
++++_ Graph queries, stores data as edges and vertices
++++_ Complex and dynamic data, complex relations.
+++ API for Table
++++_ Stores data in key/value format
++++_ Migrate from Table Storage
+
+@endmindmap

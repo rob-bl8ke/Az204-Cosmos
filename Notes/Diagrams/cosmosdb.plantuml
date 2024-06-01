@@ -1,0 +1,49 @@
+@startmindmap "COSMOS DB"
+
++ Cosmos DB
+++ API Options
++++ NoSQL\nCore SQL
+++++_ Document database
+++++_ Use familiar SQL queries
+++++ Backup Policy
++++++_ Periodic\n  Periodically backup\n  and keep for specified time
++++++_ Can be locally, zone, or geo-redundant
++++++_ Permanent\n  Continuous (7 or 30 day window)
+++++ Consistency
+
++++++ Strong
+++++++_ Reads guaranteed to see most recent write
+++++++_ Highest write latency, lowest throughput\n  may be read delays while waiting for replication.
+++++++_ Scoped to a single region.
++++++ Bounded Staleness
+++++++_ Single write region\n  ...specify max lag time for read regions
+++++++_ Group collaboration and sharing, stock ticker,\n  publish-subscribe/queueing\n  Globaly distributed applications\n  requiring low write latencies
++++++ Session
+++++++_ Consistency within the same session.\n Writes have higher latency.
+++++++_ Similar to eventual but provides session consistency guarantees.
+++++++_ Most widely used consistency level both for\n  single region as well as globally distributed applications
++++++ Consistent Prefix
+++++++_ Comparable to Eventual but provides order guarantees
+++++++_ Think threaded chat (whatsapp) where order matters
+++++++_ Low latency, high throughput on the write path
++++++ Eventual
+++++++_ Weakest form of consistency
+++++++_ In the absence of further writes, the replicas will eventually converge.
+++++++_ No ordering guarantees (Likes, Retweets or non threaded comments)
+
++++ migrate
+++++ for Mongo DB
++++++_ existing MongoDB workloads
+++++ for Appache Cassandra
++++++_ existing Cassandra workloads
++++++_ Use CQL
+++++ for Table (storage)
++++++_ migrate existing table storage\n  to enterprise grade database
++++ Apache Gremlin
+++++_ Nodes and edges (relationships)
+++++_ Locations, people networks
+++ Capacity Mode
++++_ Provisioned throughput\n  Reserve your througput
++++_ Serverless\n  Pay per execution
+
+@endmindmap

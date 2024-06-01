@@ -1,0 +1,28 @@
+
+@startmindmap "Consistency"
+
++ Consistency
+++ Strong
++++_ Reads guaranteed to see most recent write
++++_ Highest write latency, lowest throughput.
++++_ Does not support multi-region writes.
++++_ Example: Auction
+++ Bounded Staleness
++++_ Define a staleness window (no. of updates or lag time)
++++_ Single write region.
++++_ Example: Think **mobile delivery** or stock ticker.
++++_ Suitable for globally distributed applications\n  requiring low write latencies
+++ Session
++++_ Consistency within the same session.
++++_ **Shopping cart** or wall posts.
++++_ **Default** consistency level used by most Cosmos DB accounts
+++ Consistent Prefix
++++_ Provides order guarantees
++++_ Think **group chat**
++++_ Low latency, high throughput on the write path
+++ Eventual
++++_ Weakest form of consistency
++++_ No consistency guarantees.
++++_ **Likes**, Retweets 
+
+@endmindmap

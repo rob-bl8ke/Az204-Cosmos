@@ -1,0 +1,16 @@
+@startmindmap "Request Units"
+* Request Units
+** Pay for provisioned throughput and storage
+** Cost measured in Request Units (RUs)
+*** Point read: 1RU for 1-KB item
+** Three Account Creation Modes
+*** Provisioned throughput mode
+**** Provision RUs per second
+**** Scale RUs programmatically
+*** Serverless mode
+**** No throughput provisioning
+**** Billed for consumed RUs
+*** Autoscale mode
+**** Automatic scaling based on usage
+**** Ideal for mission-critical workloads
+@endmindmap

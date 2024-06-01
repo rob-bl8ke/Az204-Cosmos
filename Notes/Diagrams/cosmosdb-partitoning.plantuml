@@ -1,0 +1,21 @@
+@startmindmap "Cosmos DB Partition Keys"
+
++ Partition Keys
+++ Defined
+++ Read-Heavy queries
++++_ Choose partition key appears frequentyly in query filters\n  efficiently route to physical partitions
++++_ Small containers will not need to worry about physical partitions
+++ Item Id
++++_ Unique per item, so wide range of values... often a great choice.
++++_ Balances RU consumption and data storage.
++++_ Efficient point reads (know both partition key and id is the same).
+++ Synthetic
++++ Random Suffix
+++++_ Write operations spread evenly across multiple logical partitions
+++++_ Better parrallelism and higher throughput\n  Difficult to read (don't know the suffix)
+++++_ eg. Randomize 1 - 400\n  2018-08-09.1, ..., 2018-08-09.400
++++ Pre-calculated Suffix
+++++_ Given a year and a vehicle VIN\n  Calculate hash of VIN and append to year.
+++++_ Write operations spread evenly across multiple logical partitions\n  Avoid creating single hot partition
+
+@endmindmap

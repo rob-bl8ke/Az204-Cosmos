@@ -1,0 +1,20 @@
+@startmindmap "Non-relational DB Scaling"
+
++ Non-relational DB\n Horizontal Scaling
+++ Partitioning
++++ Types
+++++_ Physical - physical storage unit on hardware
+++++_ Logical - Logical groupings within a dataset
+++++ Partition Key
++++++_ Partitions a container in order to scale elastically
++++++_ Performance gain proportional to no. of nodes
++++++_ Improves latency and throughput
+++ Replication
++++ Regional
+++++_ x4
+++++_ Improves fault tolerance
++++ Geo-replication
+++++_ Choose regions
+++++_ Improves availability
+
+@endmindmap
