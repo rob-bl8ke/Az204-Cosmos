@@ -16,7 +16,7 @@
 Find resource groups with a specific name…
 
 ```bash
-az group list --query "[?contains(name, 'rob')].{ name: name, id: id }"
+az group list --query "[?contains(name, 'myname')].{ name: name, id: id }"
 ```
 
 ## Create a Cosmos DB Account
@@ -27,28 +27,28 @@ Use Shift + Enter to enter multi-line statements at the command-line. Note these
 az login
 
 # Create resource group
-az group create --name robazresourcegroup --location southafricanorth
+az group create --name myresourcegroup --location southafricanorth
 
 # Check if account exists
-az cosmosdb check-name-exists --name robazcosmosdbaccount
+az cosmosdb check-name-exists --name mycosmosdbaccount
 
 # Create the Cosmos DB account
 az cosmosdb create \
-	--name robazcosmosdbaccount \
-	--resource-group robazresourcegroup \
+	--name mycosmosdbaccount \
+	--resource-group myresourcegroup \
 	--enable-free-tier true \
-	--tags department=accounting tags.owner=cygsoft
+	--tags department=accounting tags.owner=me
 
 # Create a Cosmos DB (no)SQL database
 az cosmosdb sql database exists \
 	--name Tasks \
-	--account-name robazcosmosdbaccount \
-	--resource-group robazresourcegroup
+	--account-name mycosmosdbaccount \
+	--resource-group myresourcegroup
 
 az cosmosdb sql database create \
 	--name Tasks \
-	--account-name robazcosmosdbaccount \
-	--resource-group robazresourcegroup \
+	--account-name mycosmosdbaccount \
+	--resource-group myresourcegroup \
 	--throughput 400
 ```
 
@@ -59,15 +59,15 @@ If you want to enable serverless you’ll use this: `--capabilities EnableServer
 az cosmosdb sql container exists \
 	--name Item \
 	--database-name Tasks \
-	--account-name robazcosmosdbaccount \
-	--resource-group robazresourcegroup
+	--account-name mycosmosdbaccount \
+	--resource-group myresourcegroup
 
 az cosmosdb sql container create \
 	--name Item \
 	--database-name Tasks \
 	--throughput 400 \
-	--account-name robazcosmosdbaccount \
-	--resource-group robazresourcegroup \
+	--account-name mycosmosdbaccount \
+	--resource-group myresourcegroup \
 	--partition-key-path '//id'
 ```
 
@@ -77,14 +77,14 @@ Partition Key Path, e.g., '/properties/name’. Note to escape the `/` do it twi
 # List the connection strings you can use to connect.
 # connection-strings, keys, read-only-keys
 az cosmosdb keys list \
-	--name robazcosmosdbaccount \
-	--resource-group robazresourcegroup \
+	--name mycosmosdbaccount \
+	--resource-group myresourcegroup \
 	--type keys
 
 # You'll also need the endpoint of your newly created Cosmos DB Account
 az cosmosdb show \
-	--name robazcosmosdbaccount \
-	--resource-group robazresourcegroup \
+	--name mycosmosdbaccount \
+	--resource-group myresourcegroup \
 	--query documentEndpoint
 ```
 
@@ -107,7 +107,7 @@ Using the primary key and the account URI one can connect the sample application
   },
   "AllowedHosts": "*",
   "CosmosDb": {
-    "Account": "https://robazcosmosdbaccount.documents.azure.com:443/",
+    "Account": "https://mycosmosdbaccount.documents.azure.com:443/",
     "Key": "RHpcA1...==",
     "DatabaseName": "Tasks",
     "ContainerName": "Item"
@@ -128,9 +128,9 @@ curl --request $verb --data "@$documentJson" -H "x-ms-documentdb-is-upsert: $isU
 ## Cleaning up
 
 ```bash
-az cosmosdb collection delete --collection-name Tasks --name robazcosmosdbaccount --resource-group robazresourcegroup
-az cosmosdb database delete --name robazcosmosdbaccount --resource-group robazresourcegroup
-az cosmosdb delete --name robazcosmosdbaccount --resource-group robazresourcegroup
+az cosmosdb collection delete --collection-name Tasks --name mycosmosdbaccount --resource-group myresourcegroup
+az cosmosdb database delete --name mycosmosdbaccount --resource-group myresourcegroup
+az cosmosdb delete --name mycosmosdbaccount --resource-group myresourcegroup
 
-az group delete --name robazresourcegroup
+az group delete --name myresourcegroup
 ```
