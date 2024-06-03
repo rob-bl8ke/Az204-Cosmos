@@ -1,5 +1,12 @@
 # Sample Application: CRUD Operations
 
+```
+dotnet new console
+dotnet add package Microsoft.Azure.Cosmos
+dotnet build
+dotnet run
+```
+
 Your project file looks something like this...
 
 ```xml
@@ -72,7 +79,9 @@ public class ToDoActivity
 Here is some experimental code that exercises some simple CRUD operations.
 
 ```csharp
+// Here's the important reference....
 using Microsoft.Azure.Cosmos;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
