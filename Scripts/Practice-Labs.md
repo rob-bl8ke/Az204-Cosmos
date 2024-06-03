@@ -1,23 +1,4 @@
-
-
-
-
-
-
 # Azure CLI
-
----
-
-
-### Locations
-
-`az account list-locations` will give you a list of locations you can choose from. Try this one to be less verbose: `az account list-locations --query "[].name"` or even this one `az account list-locations --query "[].{ name: name, displayName: displayName }"`.
-
-Find resource groups with a specific name…
-
-```bash
-az group list --query "[?contains(name, 'myname')].{ name: name, id: id }"
-```
 
 ## Create a Cosmos DB Account
 

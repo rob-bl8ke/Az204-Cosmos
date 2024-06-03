@@ -3,7 +3,7 @@
 + Partition Keys
 ++ Defined
 ++ Read-Heavy queries
-+++_ Choose partition key appears frequentyly in query filters\n  efficiently route to physical partitions
++++_ Choose partition key appears frequently in query filters\n  efficiently route to physical partitions
 +++_ Small containers will not need to worry about physical partitions
 ++ Item Id
 +++_ Unique per item, so wide range of values... often a great choice.
