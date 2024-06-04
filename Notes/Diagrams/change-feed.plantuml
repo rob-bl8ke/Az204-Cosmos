@@ -1,0 +1,136 @@
+@startmindmap "Azure Change Feed Processing"
+
+title Azure Cosmos DB\nConsume an Azure Cosmos DB for NoSQL change feed using the SDK
+
+
+caption A persistent record of changes to a container in the order they occur.
+footer Process change feed events using the change feed processor in the Azure Cosmos DB for NoSQL .NET SDK.
+
+
+' List of available themes:
+' https://plantuml.com/theme
+!theme sketchy
+!include <osa/lightning/lightning>
+'!theme carbon-gray
+'!theme cyborg
+'!theme mars
+' skinparam backgroundColor #e8edec
+skinparam backgroundColor #969998
+
+<style>
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
+
+        .blue {
+            FontColor darkblue
+        }
+
+
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
+
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
+
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
+
++ Change Feed
+
+-- Listen for changes
+---_ Process items in order in which they have been modified.
+---_ asynchronously and incrementally
+---_ distributed across clients
+---- Parallel processing
+
+-- Constraints
+---_ Can't filter change feed
+---_ Cannot see deletions
+----_ Soft delete with TTL as workaround
+
+-- Models
+
+--- Push
+----_ Recommended
+----_ Checking for work and storing state\nhandled by the Change Feed Processor
+--- Pull
+----_ Checking for work and storing state\nhandled by the client
+----_ client also handles
+-----_ Load balancing
+-----_ Parallel processing
+-----_ Error handling
+----_ Scenarios
+-----_ Filter on partition key
+-----_ Client needs to control pace of feed
+-----_ Data migrations (one-time reads)
+
+++ Read via..
++++_ <$lightning>\n**Azure Functions Cosmos DB triggers**
+++++_ Uses change feed processor\nbehind the scenes
++++_ Change feed processor library
+++++ Change Feed Processor
+
+++ Monitored Container
++++_ Monitor for insert and update operations
++++_ Data from which the change feed is generated
+++ Lease Container
++++_ State storage
++++_ A series of bookmarks for each consumer
++++_ Coordinates changed feed across multiple consumers
+++ Host\nCompute Instance
++++_ Application instance that listens and reacts to changes from the feed.
++++_ could be
+++++_ VM
+++++_ Kubernetes Pod
+++++_ ...
+++++_ Unique identifier (instance name)
++++ Delegate
+++++_ Implement business logic for a batch of changes
+++++_ C# Delegate
++++++ ChangesHandler<T>
+++++++_ Parameters
++++++++_ read only list of changes
++++++++_ cancellation token
+++++++_ Returns
++++++++_ Task
+
+-- Change Feed Estimator
+--- Sidecar
+----_ to change feed processor
+---_ Measure no. of changes that are pending
+---_ Identify when to scale out
+legend right
+The change feed processor in the .NET SDK for Azure Cosmos DB for NoSQL is simple to implement,
+designed for scale-out, and can be hosted in various .NET environments.
+endlegend
+
+@endmindmap
